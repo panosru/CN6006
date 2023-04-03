@@ -1,0 +1,63 @@
+/**
+ * &copy; Panagiotis Kosmidis (panosru)
+ */
+
+/* Import grid and controls styles */
+@import "grid.css";
+@import "controls.css";
+
+/* Define font-face for Great Vibes */
+@font-face {
+    font-family: 'Great Vibes';
+    src: url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+}
+
+/* #robot container */
+#robot {
+    /* Center element horizontally and vertically */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* Ensure content fits within element */
+    height: auto;
+    width: auto;
+
+    /* Center text in container */
+    text-align: center;
+}
+
+/* Robot title */
+#robot h1 {
+    font-size: 2.25rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 1.25rem 0;
+    color: #9267e8;
+    text-shadow: 1px 1px #333;
+}
+
+
+/* Points text */
+#points {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1rem;
+    color: #888;
+    padding-bottom: 1.25rem;
+    text-align: center;
+}
+
+#points b {
+    color: #666;
+}
+
+/* Grid container */
+#grid {
+    margin-top: 0.75rem;
+}
+
+/* Fallback font family */
+body {
+    font-family: Arial, sans-serif;
+}

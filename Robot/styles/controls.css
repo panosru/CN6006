@@ -1,0 +1,58 @@
+/**
+ * &copy; Panagiotis Kosmidis (panosru)
+ */
+
+:root {
+    --controls-margin-top: 1.5rem;
+    --controls-height: 9rem;
+    --controls-button-padding: 0.5rem 1rem;
+    --controls-button-margin: 0 0.2rem;
+    --controls-button-font-size: 1rem;
+}
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--controls-margin-top);
+}
+
+#controls > div {
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.2rem;
+    height: calc(var(--controls-height) / 3 - 1rem);
+}
+
+#controls button {
+    display: inline-block;
+    border-radius: 0.25rem;
+    padding: var(--controls-button-padding);
+    margin: var(--controls-button-margin);
+    font-size: var(--controls-button-font-size);
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    cursor: pointer;
+}
+
+#controls button:hover {
+    background-color: #3e8e41;
+}
+
+#controls button#reset {
+    background-color: #f44336;
+}
+
+#controls button#reset:hover {
+    background-color: #da190b;
+}
+
+#controls button[disabled] {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+

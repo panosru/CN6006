@@ -1,0 +1,33 @@
+<!-- HTML5 Page that loads jQuery -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Robot</title>
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+    <!-- Create a container for the robot -->
+    <div id="robot">
+        <h1>Robot</h1>
+
+        <span id="points"></span>
+
+        <!-- A Grid where the robot can move -->
+        <div id="grid"></div>
+
+        <!-- Buttons to control the robot -->
+        <nav id="controls">
+            <div><button id="up">&uarr;</button></div>
+            <div>
+                <button id="left">&larr;</button>
+                <button id="down">&darr;</button>
+                <button id="right">&rarr;</button>
+            </div>
+            <div><button id="reset">&#x21bb;</button></div>
+        </nav>
+    </div>
+    <script src="./scripts/init.js" type="module" defer></script>
+</body>
+</html>
+<!-- &copy; Panagiotis Kosmidis (panosru) -->

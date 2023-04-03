@@ -1,0 +1,52 @@
+/**
+ * &copy; Panagiotis Kosmidis (panosru)
+ */
+
+:root {
+    --grid-cols: 1;
+    --grid-rows: 1;
+    --grid-cell-size: 3.125rem; /* equals 50px */
+    --grid-gap: 0.0625rem; /* equals 1px */
+    --grid-border-color: #888888;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
+    grid-template-rows: repeat(var(--grid-rows), 1fr);
+    grid-gap: var(--grid-gap);
+    width: calc(var(--grid-rows) * var(--grid-cell-size) + var(--grid-rows) * var(--grid-gap) - var(--grid-gap));
+}
+
+.grid-cell {
+    background-color: #fff;
+    border: 0.0625rem dotted var(--grid-border-color); /* equals 1px */
+    border-radius: 0.1875rem; /* equals 3px */
+    width: var(--grid-cell-size);
+    height: var(--grid-cell-size);
+}
+
+.grid-cell.visited {
+    background-color: #cbf7bb;
+}
+
+.grid-cell.active { }
+
+.grid-cell.active::before {
+    content:'';
+    display: inline-block;
+    position: relative;
+    top: 0;
+    left: 0;
+    background: #9dec2d url("../assets/robot.png") no-repeat;
+    background-size: 1.875rem 1.875rem; /* equals 30px */
+    background-position: center;
+    width: var(--grid-cell-size);
+    height: var(--grid-cell-size);
+}
+
+.grid-cell.exit {
+    background: url("../assets/exit.png") center center no-repeat;
+    background-size: 1.875rem 1.875rem; /* equals 30px */
+}
+
