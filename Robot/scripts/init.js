@@ -44,6 +44,9 @@ import { Points } from './points.mjs';
             case 82: // r
                 grid.controls.$resetBtn.click();
                 break;
+            case 83: // s
+                grid.controls.$statusSwitch.click();
+                break;
             default:
                 return;
         }
