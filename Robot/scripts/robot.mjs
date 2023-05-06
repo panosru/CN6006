@@ -127,11 +127,19 @@ export class Robot {
      * @private
      */
     _checkOutOfBounds(direction) {
-        let $btn = this._grid.controls[`$${direction}Btn`];
+        const $btn = this._grid.controls[`$${direction}Btn`];
+        let newRow = (direction === Robot.DIRECTION_UP) ? (this.row - 1) : (this.row + 1);
+        const outOfBoundsErrorMessage = 'Cannot move out of bounds';
 
         // Check if the button is disabled, if so, throw an out-of-bounds error
         if ($btn.attr('disabled'))
-            throw new Error('Cannot move out of bounds');
+            throw new Error(outOfBoundsErrorMessage);
+
+        // When the grid status is on, the robot direction is up
+        // and the robot is about to move to the first row,
+        // throw an out-of-bounds error
+        if (direction === Robot.DIRECTION_UP && this._grid.isStatusOn && newRow === 1)
+            throw new Error(outOfBoundsErrorMessage);
     }
 
     /**
