@@ -5,6 +5,7 @@
 /* Import grid and controls styles */
 @import "grid.css";
 @import "controls.css";
+@import "toggle.css";
 
 /* Define font-face for Great Vibes */
 @font-face {

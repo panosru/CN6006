@@ -1,0 +1,53 @@
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 3.5rem;
+    height: 2rem;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 1rem;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 1.4rem;
+    width: 1.4rem;
+    left: 0.3rem;
+    bottom: 0.3rem;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 0.2rem #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(1.6rem);
+}
+
+/* Disabled status */
+input:disabled + .slider {
+    background-color: #ccc;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
