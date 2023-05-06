@@ -129,7 +129,7 @@ export class Robot {
     _checkOutOfBounds(direction) {
         let $btn = this._grid.controls[`$${direction}Btn`];
 
-        // Check if the button is disabled, if so, throw an out of bounds error
+        // Check if the button is disabled, if so, throw an out-of-bounds error
         if ($btn.attr('disabled'))
             throw new Error('Cannot move out of bounds');
     }
