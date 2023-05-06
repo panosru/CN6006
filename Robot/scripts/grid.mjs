@@ -24,6 +24,13 @@ export class Grid {
     _cols;
 
     /**
+     * Status of the grid
+     * @type {boolean}
+     * @private
+     */
+    _status = false;
+
+    /**
      * The grid jQuery object
      * @type {jQuery}
      * @private
@@ -40,7 +47,8 @@ export class Grid {
         $rightBtn: $('#right'),
         $upBtn: $('#up'),
         $downBtn: $('#down'),
-        $resetBtn: $('#reset')
+        $resetBtn: $('#reset'),
+        $statusSwitch: $('#toggle')
     };
 
     /**
@@ -69,8 +77,14 @@ export class Grid {
     get cols() { return this._cols; }
 
     /**
+     * Get the status of the grid
+     * @returns {boolean}
+     */
+    get isStatusOn() { return this._status; }
+
+    /**
      * Get the grid jQuery object
-     * @returns {{$leftBtn: *, $rightBtn: *, $upBtn: *, $downBtn: *, $resetBtn: *}}
+     * @returns {{$leftBtn: *, $rightBtn: *, $upBtn: *, $downBtn: *, $resetBtn: *, $statusSwitch: *}}
      */
     get controls() { return this._controls; }
 
@@ -89,6 +103,9 @@ export class Grid {
                 $cell.addClass('exit');
             this._$grid.append($cell);
         }
+
+        // Add event listeners
+        this._controls.$statusSwitch.on('change', this._handleStatusSwitchChange);
 
         // Reset the grid
         this.reset();
@@ -111,7 +128,9 @@ export class Grid {
             $prevCell.addClass('visited');
 
         // Activate the new cell
-        let $curCell = this._$grid.find(`.grid-cell:nth-child(${(row - 1) * this._cols + col})`).addClass('active');
+        let $curCell = this._$grid
+            .find(`.grid-cell:nth-child(${(row - 1) * this._cols + col})`)
+            .addClass('active');
 
         // Emit the change event
         document.dispatchEvent(new CustomEvent('grid:cell.changed', {
@@ -135,10 +154,31 @@ export class Grid {
     reset(row = 1, col = 1) {
         this.activateCell(row, col);
         this._$grid.find('.grid-cell.visited').removeClass('visited');
+        this._$grid.find('.grid-cell:nth-child(-n+' + this._cols + ')').removeClass('bottom-border');
+        this._$grid.removeClass('status-on');
+        this._controls.$statusSwitch.prop('checked', false);
+        this._status = false;
         this._updateControls(row, col);
     }
 
     // Private methods
+
+    /**
+     * Handle status switch change
+     * @param {Event} e
+     * @private
+     */
+    _handleStatusSwitchChange = (e) => {
+        this._status = e.target.checked;
+
+        // If the status is enabled, then apply
+        // bottom-border class to the cells of
+        // the first row, when off, remove it
+        this._$grid.find('.grid-cell:nth-child(-n+' + this._cols + ')')
+            .toggleClass('bottom-border', this._status);
+
+        this._$grid.toggleClass('status-on', this._status);
+    }
 
     /**
      * Update the controls
@@ -151,6 +191,9 @@ export class Grid {
         this._controls.$rightBtn.attr('disabled', col === this._cols);
         this._controls.$upBtn.attr('disabled', row === 1);
         this._controls.$downBtn.attr('disabled', row === this._rows);
+
+        // Status switch must be enabled only when the active cell is not on first row
+        this._controls.$statusSwitch.attr('disabled', row === 1);
 
         // Enable reset button when the active cell is on the exit cell
         this._controls.$resetBtn.attr('disabled', !(row === this._rows && col === this._cols));
