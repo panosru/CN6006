@@ -50,3 +50,12 @@
     background-size: 1.875rem 1.875rem; /* equals 30px */
 }
 
+/* cell with black bottom border */
+.grid-cell.bottom-border {
+    border-bottom: 0.0625rem solid #000; /* equals 1px */
+}
+
+/* when grid has status-on class, the robot image will have a tint colour */
+#grid.status-on .grid-cell.active::before {
+    filter: brightness(0.5) sepia(1) hue-rotate(180deg);
+}
